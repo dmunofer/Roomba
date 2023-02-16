@@ -62,3 +62,9 @@ def mostrar(zones, window):
     
     superficie =0
 
+    for zone in zones:
+        superficie = superficie + float(zone[0].get("1.0", END)) + float(zone[1].get("1.0", END))
+
+    time = superficie / velocidad
+
+
