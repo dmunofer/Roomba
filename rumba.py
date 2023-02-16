@@ -44,6 +44,21 @@ def operaciones(numero):
         a.pack()
         zones.append((l, a))
 
-    boton = Button(new, text="Get Results", command=lambda: showFinal(zones, new))
+    boton = Button(new, text="Get Results", command=lambda: mostrar(zones, new))
     boton.pack(pady=15)
+
+def mostrar(zones, window):
+    # En cms^2
+    velocidad = 3
+
+    if not check(zones):
+        t = Label(window,
+                text="Valores no validos")
+        t.config(font=25)
+        t.pack(pady=40)
+        t.after(2000, t.destroy)
+
+        return 0
+    
+    superficie =0
 
