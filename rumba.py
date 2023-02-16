@@ -72,4 +72,12 @@ def mostrar(zones, window):
     z = Label(final, text=("Tiempo: " + str(time) + " segundos"))
     z.pack()
 
+def check(zones):
+    for zone in zones:
+        try:
+            float(zone[0].get("1.0", END))
+            float(zone[1].get("1.0", END))
+        except:
+            return False
+
 
