@@ -44,3 +44,6 @@ def operaciones(numero):
         a.pack()
         zones.append((l, a))
 
+    boton = Button(new, text="Get Results", command=lambda: showFinal(zones, new))
+    boton.pack(pady=15)
+
