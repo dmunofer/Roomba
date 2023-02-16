@@ -59,7 +59,7 @@ def mostrar(zones, window):
         t.after(2000, t.destroy)
 
         return 0
-    
+
     superficie =0
 
     for zone in zones:
@@ -83,5 +83,8 @@ def check(zones):
 
 MenuPrincipal()
 root.mainloop()
+
+
+
 
 
