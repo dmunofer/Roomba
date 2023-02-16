@@ -28,4 +28,19 @@ def operaciones(numero):
     new.geometry("600x800")
 
     zones = []
+    for i in range(numero):
+        string = "Zona " + str(i)
+        text = Label(new, text=string)
+        text.pack(pady=2)
+
+        largo = Label(new, text="Largo (cm)")
+        largo.pack()
+        l = Text(new, width=30, height=1)
+        l.pack()
+
+        ancho = Label(new, text="Ancho (cm)")
+        ancho.pack()
+        a = Text(new, width=30, height=1)
+        a.pack()
+        zones.append((l, a))
 
