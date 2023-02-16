@@ -27,6 +27,7 @@ def operaciones(numero):
     ventana = Tk()
     ventana.title("Roomba")
     ventana.geometry("600x800")
+    ventana.config(bg='blue')
 
     zonas = []
     for i in range(numero):
