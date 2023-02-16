@@ -1,90 +1,84 @@
 from tkinter import *
+
 root = Tk()
+root.title("Roomba")
 root.geometry("600x600")
+root.config(bg="blue")
 
-def MenuPrincipal():
-    tittle_text = Label(root, text="Roomba")
-    tittle_text.config(font=18)
-    tittle_text.pack(pady=2)
-    main_text = Label(root, text="¿Cuantas zonas hay que limpiar?")
-    main_text.pack(pady=80)
-    main_text.config(font=16)
+def menu_principal():
+    titulo = Label(root, text="Roomba", font=("Arial", 18), bg="blue")
+    titulo.pack(pady=2)
 
-    s = Spinbox(root, from_=0, to=100000, increment=1)
-    s.config()
-    s.pack(pady=10)
+    texto = Label(root, text="¿Cuántas zonas hay que limpiar?", font=("Arial", 16))
+    texto.pack(pady=80)
 
-    boton = Button(root, text="Next", command=lambda: operaciones(s.get()))
+    spinbox = Spinbox(root, from_=0, to=100000, increment=1)
+    spinbox.pack(pady=10)
+
+    boton = Button(root, text="Siguiente", command=lambda: operaciones(int(spinbox.get())))
     boton.pack(pady=10)
 
 def operaciones(numero):
-    numero = int(numero)
     root.destroy()
 
     if numero == 0:
         return 0
 
-    new = Tk()
-    new.geometry("600x800")
+    ventana = Tk()
+    ventana.title("Roomba")
+    ventana.geometry("600x800")
 
-    zones = []
+    zonas = []
     for i in range(numero):
         string = "Zona " + str(i)
-        text = Label(new, text=string)
+        text = Label(ventana, text=string, font=("Arial", 16))
         text.pack(pady=2)
 
-        largo = Label(new, text="Largo (cm)")
+        largo_label = Label(ventana, text="Largo (cm)", font=("Arial", 12))
+        largo_label.pack()
+        largo = Text(ventana, width=30, height=1)
         largo.pack()
-        l = Text(new, width=30, height=1)
-        l.pack()
 
-        ancho = Label(new, text="Ancho (cm)")
+        ancho_label = Label(ventana, text="Ancho (cm)", font=("Arial", 12))
+        ancho_label.pack()
+        ancho = Text(ventana, width=30, height=1)
         ancho.pack()
-        a = Text(new, width=30, height=1)
-        a.pack()
-        zones.append((l, a))
 
-    boton = Button(new, text="Get Results", command=lambda: mostrar(zones, new))
+        zonas.append((largo, ancho))
+
+    boton = Button(ventana, text="Obtener resultados", command=lambda: mostrar(zonas, ventana))
     boton.pack(pady=15)
 
-def mostrar(zones, window):
-    # En cms^2
+def mostrar(zonas, ventana):
     velocidad = 3
 
-    if not check(zones):
-        t = Label(window,
-                text="Valores no validos")
-        t.config(font=25)
-        t.pack(pady=40)
-        t.after(2000, t.destroy)
+    if not validar(zonas):
+        mensaje = Label(ventana, text="Valores no válidos", font=("Arial", 25))
+        mensaje.pack(pady=40)
+        mensaje.after(2000, mensaje.destroy)
+        return
 
-        return 0
+    superficie = sum([float(zone[0].get("1.0", END)) + float(zone[1].get("1.0", END)) for zone in zonas])
 
-    superficie =0
-
-    for zone in zones:
-        superficie = superficie + float(zone[0].get("1.0", END)) + float(zone[1].get("1.0", END))
-
-    time = superficie / velocidad
+    tiempo = superficie / velocidad
 
     final = Tk()
+    final.title("Roomba")
     final.geometry("600x300")
-    z = Label(final, text=("Tiempo: " + str(time) + " segundos"))
-    z.pack()
+    resultado = Label(final, text=("Tiempo: " + str(tiempo) + " segundos"), font=("Arial", 16))
+    resultado.pack()
 
-def check(zones):
-    for zone in zones:
+def validar(zonas):
+    for zona in zonas:
         try:
-            float(zone[0].get("1.0", END))
-            float(zone[1].get("1.0", END))
+            float(zona[0].get("1.0", END))
+            float(zona[1].get("1.0", END))
         except:
             return False
     return True
 
-MenuPrincipal()
+menu_principal()
 root.mainloop()
-
-
 
 
 
