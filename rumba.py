@@ -67,4 +67,9 @@ def mostrar(zones, window):
 
     time = superficie / velocidad
 
+    final = Tk()
+    final.geometry("600x300")
+    z = Label(final, text=("Tiempo: " + str(time) + " segundos"))
+    z.pack()
+
 
