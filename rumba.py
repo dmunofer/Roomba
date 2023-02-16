@@ -32,7 +32,7 @@ def operaciones(numero):
     zonas = []
     for i in range(numero):
         string = "Zona " + str(i)
-        text = Label(ventana, text=string, font=("Arial", 16))
+        text = Label(ventana, text=string, font=("Arial", 16),bg='blue')
         text.pack(pady=2)
 
         largo_label = Label(ventana, text="Largo (cm)", font=("Arial", 12))
@@ -54,7 +54,7 @@ def mostrar(zonas, ventana):
     velocidad = 3
 
     if not validar(zonas):
-        mensaje = Label(ventana, text="Valores no válidos", font=("Arial", 25))
+        mensaje = Label(ventana, text="Valores no válidos", font=("Arial", 25),bg='blue')
         mensaje.pack(pady=40)
         mensaje.after(2000, mensaje.destroy)
         return
@@ -66,7 +66,7 @@ def mostrar(zonas, ventana):
     final = Tk()
     final.title("Roomba")
     final.geometry("600x300")
-    resultado = Label(final, text=("Tiempo: " + str(tiempo) + " segundos"), font=("Arial", 16))
+    resultado = Label(final, text=("Tiempo: " + str(tiempo) + " segundos"), font=("Arial", 16),bg='blue')
     resultado.pack()
 
 def validar(zonas):
