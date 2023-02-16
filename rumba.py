@@ -79,5 +79,9 @@ def check(zones):
             float(zone[1].get("1.0", END))
         except:
             return False
+    return True
+
+MenuPrincipal()
+root.mainloop()
 
 
